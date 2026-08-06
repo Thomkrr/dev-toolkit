@@ -1,0 +1,2 @@
+[console_scripts]
+dev-toolkit = dev_toolkit:main

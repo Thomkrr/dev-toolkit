@@ -1,0 +1,34 @@
+[project]
+name = "dev-toolkit"
+version = "0.1.0"
+description = "Dev Automation Toolkit - 7 CLI commands to automate repetitive coding tasks"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "click>=8.0",
+    "rich>=13.0",
+    "ruff>=0.3.0",
+]
+[project.scripts]
+dev-toolkit = "dev_toolkit:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "pip-audit>=2.6",
+]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+lint.select = ["E", "F", "I", "UP", "B", "C4", "PT", "SIM", "T20", "W"]
+format.quote-style = "double"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --cov=dev_toolkit --cov-fail-under=40"

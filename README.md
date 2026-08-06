@@ -1,0 +1,67 @@
+# Dev Automation Toolkit
+
+**7 CLI commands to automate repetitive coding tasks. Built for developers who want to ship faster.**
+
+## Installation
+
+```bash
+pip install dev-toolkit
+# or from source
+pip install -e .[dev]
+```
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `dev-toolkit scaffold <template> <name>` | Scaffold project: fastapi, cli, react, nextjs |
+| `dev-toolkit lint-fix` | Run ruff + format with auto-fix |
+| `dev-toolkit test-cov` | Run pytest with coverage (fail < 80%) |
+| `dev-toolkit deps-check` | Check Python/Node deps for updates + vulns |
+| `dev-toolkit dockerize` | Generate optimized Dockerfile + compose |
+| `dev-toolkit release <major\|minor\|patch>` | Bump version, commit, tag |
+| `dev-toolkit clean` | Remove build artifacts |
+
+## Quick Start
+
+```bash
+# Scaffold a FastAPI project
+dev-toolkit scaffold fastapi my-api
+cd my-api
+pip install -e .[dev]
+cp .env.example .env
+uvicorn app.main:app --reload
+
+# Scaffold a CLI tool
+dev-toolkit scaffold cli my-cli
+cd my-cli
+pip install -e .
+my-cli hello world
+
+# Dockerize any Python project
+dev-toolkit dockerize --port 8000
+docker-compose up -d
+
+# Release workflow
+dev-toolkit test-cov
+dev-toolkit lint-fix
+dev-toolkit release patch  # or minor/major
+git push && git push --tags
+```
+
+## Templates Included
+
+- **fastapi** - Production-ready structure with settings, API versioning, health checks
+- **cli** - Click + Rich CLI with subcommands
+- **react** - Vite + React 18 starter
+- **nextjs** - Next.js 14 App Router starter
+
+## Requirements
+
+- Python 3.10+
+- Node.js 18+ (for react/nextjs templates)
+- Docker (for dockerize command)
+
+## License
+
+MIT
